@@ -4,7 +4,6 @@ import CreateNote from "./CreateNote";
 import Note from "./Note"
 import Footer from "./Footer";
 
-
 function App() {
   const [notes, setNotes] = useState([]);
 
