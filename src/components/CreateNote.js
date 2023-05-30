@@ -1,17 +1,21 @@
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import AddIcon from '@mui/icons-material/Add';
 import Fab from "@mui/material/Fab";
 import Zoom from "@mui/material/Zoom";
 
 
-export default function CreateNote({ AddNote }) {
+export default function CreateNote({ AddNote, startingID }) {
     const [showArea, setShowArea] = useState(false);
 
     const [note, setNote] = useState({
-        id: 1,
+        id: startingID,
         title: "",
         content: ""
     });
+
+    useMemo(() => setNote(prevNote => {
+        return { ...prevNote, id: startingID }
+    }), [startingID])
 
     function handleSelectArea() {
         setShowArea(true);
@@ -45,7 +49,7 @@ export default function CreateNote({ AddNote }) {
             {showArea && <Zoom in={showArea}>
                 <input onChange={handleNoteChange} type="text" name="title" placeholder="Title..." required value={note.title} />
             </Zoom>}
-            <textarea onChange={handleNoteChange} onSelect={handleSelectArea} name="content" placeholder="Write your note..." rows={showArea ? 3:1} required value={note.content} />
+            <textarea onChange={handleNoteChange} onSelect={handleSelectArea} name="content" placeholder="Write your note..." rows={showArea ? 3 : 1} required value={note.content} />
             <Zoom in={showArea}>
                 <Fab onClick={handleAddButton}><AddIcon /></Fab>
             </Zoom>
