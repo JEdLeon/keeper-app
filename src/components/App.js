@@ -11,7 +11,7 @@ function App() {
 
   async function AddNote(newNote) {
     try {
-      const postNote = await fetch("https://keeper-db-api.onrender.com/notes", {
+      const postNote = await fetch("https://keeper-app-db-api.onrender.com/notes", {
         method: "POST",
         body: JSON.stringify(newNote),
         headers: {
@@ -30,7 +30,7 @@ function App() {
   }
 
   async function DeleteNote(id) {
-    const deleteNote = await fetch(`https://keeper-db-api.onrender.com/notes/${id}`, {
+    const deleteNote = await fetch(`https://keeper-app-db-api.onrender.com/notes/${id}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json"
@@ -41,7 +41,7 @@ function App() {
   }
 
   async function getNotes() {
-    const reqNotes = await fetch("https://keeper-db-api.onrender.com/notes")
+    const reqNotes = await fetch("https://keeper-app-db-api.onrender.com/notes")
     const notesRes = await reqNotes.json();
     setFetchResponse(notesRes);
   }
